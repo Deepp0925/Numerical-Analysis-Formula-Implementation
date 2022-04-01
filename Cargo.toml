@@ -1,0 +1,20 @@
+[package]
+name = "num_analysis"
+version = "0.1.0"
+edition = "2021"
+publish=false
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+# [lib]
+# name="num_analysis"
+# crate-type=['rlib', 'cdylib']
+# path="src/lib.rs"
+
+[[bin]]
+name="num_analysis_bin"
+path="src/main.rs"
+
+[dependencies]
+meval = "0.2"
+
