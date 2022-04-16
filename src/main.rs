@@ -2,7 +2,7 @@
 mod bisection;
 mod divdiff;
 mod factorial;
-mod gaussian;
+// mod gaussian;
 mod hermite;
 mod lagrange;
 mod midpoint;
@@ -20,22 +20,57 @@ use std::{io::stdin, str::FromStr};
 
 use crate::bisection::bisection;
 use crate::divdiff::{newton_backward_diff, newton_forward_diff};
-use crate::gaussian::gaussian_quadrature;
+// use crate::gaussian::gaussian_quadrature;
 use crate::hermite::hermite;
 use crate::neville::{neville, neville_w_func};
 use crate::newton::newton;
 use crate::regula::regula_falsi;
 use crate::romberg::romberg;
 use crate::secant::secant;
-use crate::simpson::composite_simpson;
-use crate::trapazoidal::composite_trapazoidal;
+use crate::simpson::{composite_simpson, composite_simpson_err, simpson, simpson_err};
+use crate::trapazoidal::{
+    composite_trapazoidal, composite_trapazoidal_err, trapazoidal, trapazoidal_err,
+};
 fn main() {
     println!();
-    // romberg(0.0, PI, &f, 4);
-    println!("{}", gaussian_quadrature(-1.0, 1.0, &f, 3));
+    // romberg(E, 2.0 * E, &f, 4);
+    // let min_err = 10.0_f64.powi(-4);
+    // let n = 451;
+    // println!(
+    //     "Composite Trapazoidal: {}",
+    //     composite_trapazoidal(0.0, PI, &f, n)
+    // );
+    // println!(
+    //     "Composite Trapazoidal Err: {}",
+    //     composite_trapazoidal_err(0.0, PI, &f2_deriv, n)
+    // );
+    // println!(
+    //     "is under min Composite Trapazoidal Err: {}",
+    //     composite_trapazoidal_err(0.0, PI, &f2_deriv, n) < min_err
+    // );
+    // println!("n: {} h: {}", n, (PI - 0.0) / n as f64);
+    // let n = 51;
+    // println!("Composite Simpson: {}", composite_simpson(0.0, PI, &f, n));
+    // println!(
+    //     "Composite Simpson Err: {}",
+    //     composite_simpson_err(0.0, PI, &f4_deriv, n)
+    // );
+    // println!(
+    //     "is under min Comp. Simpson Err: {}",
+    //     composite_simpson_err(0.0, PI, &f4_deriv, n) < min_err
+    // );
+    // println!("n: {} h: {}", n, (PI - 0.0) / n as f64);
     println!();
 }
 
 fn f(x: f64) -> f64 {
-    return x.exp() * x.cos();
+    return (1.0 / (x * x.ln()));
+}
+
+fn f2_deriv(x: f64) -> f64 {
+    return (2.0 - x.powi(2)) * x.cos() - 4.0 * x * x.sin();
+}
+
+fn f4_deriv(x: f64) -> f64 {
+    return 8.0 * x * x.sin() + (x.powi(2) - 12.0) * x.cos();
 }

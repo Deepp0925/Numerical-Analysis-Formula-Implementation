@@ -39,8 +39,8 @@ pub fn composite_trapazoidal_err(a: f64, b: f64, f: &dyn Fn(f64) -> f64, n: u64)
 /// * `f` - the function to integrate
 /// # Returns
 /// the value of the integral
-pub fn trapezoidal(a: f64, b: f64, f: &dyn Fn(f64) -> f64) -> f64 {
-    let h = (b - a);
+pub fn trapazoidal(a: f64, b: f64, f: &dyn Fn(f64) -> f64) -> f64 {
+    let h = (b - a) / 2.0;
     let mut sum = f(a) + f(b);
     sum * h
 }
@@ -53,7 +53,7 @@ pub fn trapezoidal(a: f64, b: f64, f: &dyn Fn(f64) -> f64) -> f64 {
 /// * `n` - the number of steps to take
 /// # Returns
 /// the value of the error term
-pub fn trapazoidal_err(a: f64, b: f64, f: &dyn Fn(f64) -> f64, n: u64) -> f64 {
-    let h = (b - a) / n as f64;
+pub fn trapazoidal_err(a: f64, b: f64, f: &dyn Fn(f64) -> f64) -> f64 {
+    let h = (b - a) as f64;
     (h.powi(3) / 12.0) * f(b)
 }

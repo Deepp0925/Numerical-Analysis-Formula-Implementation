@@ -1,6 +1,6 @@
 use std::f64::consts::PI;
 /// beware this function is currently not working accurately, please use gaussian.java instead
-/// this function is used to calculate the gaussiian quadrature over a given interval
+/// this function is used to calculate the gaussian quadrature over a given interval
 /// # Arguments
 /// * `a` - the lower bound of the interval
 /// * `b` - the upper bound of the interval
